@@ -143,6 +143,8 @@ export default function IndiaMap() {
                       onMouseDown={() => {
                         if (locationStates.includes(stateName)) {
                           SetSelectedState(stateName);
+                        } else {
+                          SetSelectedState("");
                         }
                       }}
                       style={{
@@ -203,10 +205,10 @@ export default function IndiaMap() {
                   }}
                 >
                   <circle
-                    r={3.5}
-                    fill="#8fc683"
+                    r={3}
+                    fill="#1d993f"
                     stroke="#1d993f"
-                    strokeWidth={1}
+                    strokeWidth={0.5}
                   />
                 </Marker>
               ))}
