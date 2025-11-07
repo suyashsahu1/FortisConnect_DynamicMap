@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   ComposableMap,
   Geographies,
@@ -11,7 +11,8 @@ import { locations } from "./locationData";
 import "./App.css";
 
 export default function IndiaMap() {
-  const [selectedState, SetSelectedState] = useState("National Capital Region");
+  const [selectedState, setSelectedState] = useState("National Capital Region");
+  const mapRef = useRef(null);
 
   const locationStates = useMemo(() => locations.map((obj) => obj.state), []);
 
@@ -44,6 +45,18 @@ export default function IndiaMap() {
 
   const totalHospitals = uniqueCities.length;
 
+  // 👇 Detect click outside the map
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (mapRef.current && !mapRef.current.contains(event.target)) {
+        setSelectedState(""); // reset selection
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
   return (
     <div
       style={{
@@ -55,6 +68,11 @@ export default function IndiaMap() {
         padding: "20px 30px 30px",
         boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
       }}
+      // onClick={() => {
+      //   if (selectedState) {
+      //     setSelectedState("");
+      //   }
+      // }}
     >
       {/* 🧭 Top Info Bar */}
       <div
@@ -80,7 +98,7 @@ export default function IndiaMap() {
               minWidth: "100px",
               textAlign: "center",
               display: "flex",
-              gap: "24px",
+              gap: "12px",
             }}
           >
             <div
@@ -95,6 +113,7 @@ export default function IndiaMap() {
                 gap: "10px",
                 display: "flex",
               }}
+              className="stats-card"
             >
               {item.value}
             </div>
@@ -129,6 +148,7 @@ export default function IndiaMap() {
             projectionConfig={{ center: [80, 22], scale: 1000 }}
             width={600}
             height={600}
+            ref={mapRef}
           >
             <Geographies geography={geoJson}>
               {({ geographies }) =>
@@ -142,9 +162,9 @@ export default function IndiaMap() {
                       geography={geo}
                       onMouseDown={() => {
                         if (locationStates.includes(stateName)) {
-                          SetSelectedState(stateName);
+                          setSelectedState(stateName);
                         } else {
-                          SetSelectedState("");
+                          setSelectedState("");
                         }
                       }}
                       style={{
@@ -183,13 +203,13 @@ export default function IndiaMap() {
               }
             </Geographies>
 
-            {locations
+            {/* {locations
               .filter((loc) => loc.coords && loc.coords.length === 2)
               .map(({ coords, state }) => (
                 <Marker
                   onMouseDown={() => {
                     if (locationStates.includes(state)) {
-                      SetSelectedState(state);
+                      setSelectedState(state);
                     }
                   }}
                   key={state}
@@ -204,14 +224,9 @@ export default function IndiaMap() {
                     pressed: { outline: "none" },
                   }}
                 >
-                  <circle
-                    r={3}
-                    fill="#1d993f"
-                    stroke="#1d993f"
-                    strokeWidth={0.5}
-                  />
+                  <circle r={3} fill="red" stroke="red" strokeWidth={0.5} />
                 </Marker>
-              ))}
+              ))} */}
           </ComposableMap>
         </div>
 
