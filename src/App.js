@@ -49,7 +49,7 @@ export default function IndiaMap() {
   useEffect(() => {
     function handleClickOutside(event) {
       if (mapRef.current && !mapRef.current.contains(event.target)) {
-        setSelectedState(""); // reset selection
+        setSelectedState("National Capital Region"); // reset selection
       }
     }
 
@@ -65,7 +65,7 @@ export default function IndiaMap() {
         // margin: "50px auto",
         background: "#F0F9FA",
         borderRadius: "12px",
-        padding: "20px 30px 30px",
+        padding: "20px",
         boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
       }}
       // onClick={() => {
@@ -74,9 +74,8 @@ export default function IndiaMap() {
       //   }
       // }}
     >
-      {/* 🧭 Top Info Bar */}
 
-      {/* 🗺️ Map + City List */}
+      {/* Map + City List */}
       <div
         style={{
           display: "flex",
@@ -90,7 +89,7 @@ export default function IndiaMap() {
           <ComposableMap
             projection="geoMercator"
             projectionConfig={{ center: [80, 22], scale: 1000 }}
-            width={620}
+            width={780}
             height={620}
             ref={mapRef}
           >
@@ -108,7 +107,7 @@ export default function IndiaMap() {
                         if (locationStates.includes(stateName)) {
                           setSelectedState(stateName);
                         } else {
-                          setSelectedState("");
+                          setSelectedState("National Capital Region");
                         }
                       }}
                       style={{
@@ -179,7 +178,7 @@ export default function IndiaMap() {
           </ComposableMap>
         </div>
 
-        {/* 📋 Right-side City List */}
+        {/*Right-side City List */}
         <div
           style={{
             flexBasis: "35%",
@@ -256,7 +255,7 @@ export default function IndiaMap() {
 
           <div
             style={{
-              maxHeight: "656px",
+              maxHeight: "400px",
               overflowY: "auto",
               transition: "all 0.3s ease-in-out",
             }}
