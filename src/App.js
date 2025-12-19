@@ -74,7 +74,6 @@ export default function IndiaMap() {
       //   }
       // }}
     >
-
       {/* Map + City List */}
       <div
         style={{
@@ -147,12 +146,7 @@ export default function IndiaMap() {
             </Geographies>
 
             {locations
-              .filter(
-                (loc) =>
-                  loc.coords &&
-                  loc.coords.length === 2 &&
-                  loc.state === "National Capital Region"
-              )
+              .filter((loc) => loc.coords && loc.coords.length === 2)
               .map(({ coords, state }) => (
                 <Marker
                   onMouseDown={() => {
@@ -197,8 +191,8 @@ export default function IndiaMap() {
             }}
           >
             {[
-              { label: "States of Operation", value: totalStates },
-              { label: "Healthcare Facilities", value: totalHospitals },
+              { label: "States", value: totalStates },
+              { label: "Healthcare Facilities", value: 33 || totalHospitals },
               // { label: "Vision", value: "01" },
               // { label: "Mission", value: "01" },
             ].map((item, idx) => (

@@ -3,9 +3,9 @@ export const locations = [
     state: "Maharashtra",
     coords: [75, 19],
     cities: [
-      { name: "Mumbai", address: "S L Raheja Hospital, Mahim" },
       { name: "Mumbai", address: "Fortis Hospital, Mulund" },
       { name: "Mumbai", address: "Hiranandani Fortis Hospital, Vashi" },
+      { name: "Mumbai", address: "S L Raheja Hospital, Mahim" },
       { name: "Mumbai", address: "Fortis Hospital, Kalyan" },
     ],
   },
@@ -48,7 +48,7 @@ export const locations = [
     coords: [77.1, 28.65],
     cities: [
       {
-        name: "Gurgaon",
+        name: "Gurugram",
         address: "Fortis Memorial Research Institute",
       },
       {
@@ -132,7 +132,7 @@ export const locations = [
   },
   {
     state: "Uttar Pradesh",
-    coords: [],
+    coords: [81, 26.5],
     cities: [
       { name: "Noida", address: "Fortis Hospital" },
       { name: "Greater Noida", address: "Fortis Hospital" },
@@ -140,10 +140,10 @@ export const locations = [
   },
   {
     state: "Haryana",
-    coords: [],
+    coords: [76.3, 29.25],
     cities: [
       {
-        name: "Gurgaon",
+        name: "Gurugram",
         address: "Fortis Memorial Research Institute",
       },
       { name: "Faridabad", address: "Fortis Escorts Hospital" },
