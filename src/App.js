@@ -91,8 +91,8 @@ export default function IndiaMap() {
           <ComposableMap
             projection="geoMercator"
             projectionConfig={{ center: [80, 22], scale: 1000 }}
-            width={780}
-            height={620}
+            width={900}
+            height={610}
             ref={mapRef}
           >
             <Geographies geography={geoJson}>
