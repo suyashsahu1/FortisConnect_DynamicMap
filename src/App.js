@@ -60,29 +60,6 @@ export default function IndiaMap() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const fetchCitiesFromSharePoint = async () => {
-    const response = await fetch(
-      "https://geminisolutionsindpvtltd.sharepoint.com/sites/FortisMapsDummy/_api/web/lists/getbytitle('locations')/items?$select=Title,Description",
-      {
-        headers: {
-          Accept: "application/json;odata=nometadata",
-        },
-        credentials: "include", // IMPORTANT
-      }
-    );
-
-    const data = await response.json();
-
-    console.log(data);
-
-    return data.value;
-  };
-
-  useEffect(() => {
-    // Example usage of fetchCitiesFromSharePoint
-    fetchCitiesFromSharePoint();
-  }, []);
-
   return (
     <div
       style={{
