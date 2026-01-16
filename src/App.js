@@ -287,13 +287,13 @@ export default function IndiaMap() {
                     color: "rgba(64, 82, 97, 1)",
                   }}
                 >
-                  {city.name}
+                  {city.hospitalName}
                 </span>
 
                 <span
                   style={{ fontSize: "14px", color: "rgba(64, 82, 97, 1)" }}
                 >
-                  {city.address}
+                  {city.cityName}
                 </span>
               </div>
             ))}
@@ -331,7 +331,7 @@ export default function IndiaMap() {
               }}
             />
             <p style={{ margin: 0, fontWeight: 700, fontSize: "16px" }}>
-              {hoveredCity.hospitalTitle}
+              {hoveredCity.hospitalAddress}
             </p>
 
             <p style={{ margin: "8px 0", fontSize: "14px", color: "#5f6b7a" }}>
