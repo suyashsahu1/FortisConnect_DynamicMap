@@ -18,6 +18,9 @@ export default function IndiaMap() {
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
 
   const mapRef = useRef(null);
+  const cityRef = useRef(null);
+  const popupRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
 
   const locationStates = useMemo(() => locations.map((obj) => obj.state), []);
 
@@ -62,6 +65,19 @@ export default function IndiaMap() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const scheduleClose = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setHoveredCity(null);
+    }, 200); // adjust: 150–300 feels best
+  };
+
+  const cancelClose = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+  };
+
   return (
     <div
       style={{
@@ -71,6 +87,7 @@ export default function IndiaMap() {
         background: "#F0F9FA",
         borderRadius: "12px",
         padding: "20px",
+        height: "100vh",
         boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
       }}
       // onClick={() => {
@@ -263,15 +280,32 @@ export default function IndiaMap() {
             {selectedStateCities.map((city, idx) => (
               <div
                 key={idx}
+                ref={cityRef}
                 onMouseEnter={(e) => {
+                  cancelClose();
                   const rect = e.currentTarget.getBoundingClientRect();
+
+                  const popupHeight = 300; // estimated
+                  const viewportHeight = window.innerHeight;
+
+                  let top = rect.top;
+                  if (top + popupHeight > viewportHeight) {
+                    top = viewportHeight - popupHeight - 100;
+                  }
+
                   setHoverPos({
                     x: rect.left - 270,
-                    y: rect.top,
+                    y: Math.max(top, 20),
                   });
                   setHoveredCity(city);
                 }}
-                onMouseLeave={() => setHoveredCity(null)}
+                onMouseLeave={(e) => {
+                  // if going into popup, do nothing
+                  if (popupRef.current?.contains(e.relatedTarget)) {
+                    return;
+                  }
+                  scheduleClose();
+                }}
                 style={{
                   background: "white",
                   padding: "16px 24px",
@@ -303,19 +337,18 @@ export default function IndiaMap() {
         </div>
         {hoveredCity && hoveredCity.description && (
           <div
+            ref={popupRef}
             className="hover-popup"
             style={{
-              position: "fixed",
               top: hoverPos.y,
               left: hoverPos.x,
               width: "260px",
-              background: "white",
-              borderRadius: "12px",
-              padding: "16px",
-              boxShadow: "0 12px 32px rgba(0,0,0,0.15)",
               zIndex: 9999,
-              pointerEvents: "none",
-              animation: "fadeIn 0.15s ease-in-out",
+            }}
+            onMouseEnter={cancelClose}
+            onMouseLeave={(e) => {
+              if (cityRef.current?.contains(e.relatedTarget)) return;
+              scheduleClose();
             }}
           >
             <img
@@ -327,18 +360,19 @@ export default function IndiaMap() {
               loading="lazy"
               style={{
                 width: "100%",
-                height: "auto",
+                height: "125px",
                 borderRadius: "8px",
                 marginBottom: "8px",
               }}
             />
+
             <p style={{ margin: 0, fontWeight: 700, fontSize: "16px" }}>
               {hoveredCity.hospitalAddress}
             </p>
 
-            <p style={{ margin: "8px 0", fontSize: "14px", color: "#5f6b7a" }}>
+            <div className="hover-description">
               {hoveredCity.description || "No description available."}
-            </p>
+            </div>
           </div>
         )}
       </div>
