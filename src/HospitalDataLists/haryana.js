@@ -1,6 +1,6 @@
 export const haryanaHospitals = {
   state: "Haryana",
-  coords: [76.3, 29.25],
+  // coords: [76.3, 29.25],
   cities: [
     {
       cityName: "Gurugram",

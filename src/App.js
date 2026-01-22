@@ -16,6 +16,7 @@ export default function IndiaMap() {
   );
   const [hoveredCity, setHoveredCity] = useState(null);
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
+  const [mapWidth, setMapWidth] = useState(900);
 
   const mapRef = useRef(null);
   const cityRef = useRef(null);
@@ -80,6 +81,10 @@ export default function IndiaMap() {
 
   const isNode = (el) => el instanceof Node;
 
+  useEffect(() => {
+    setMapWidth(window?.innerWidth > 1024 ? 900 : 750);
+  }, []);
+
   return (
     <div
       style={{
@@ -112,7 +117,7 @@ export default function IndiaMap() {
           <ComposableMap
             projection="geoMercator"
             projectionConfig={{ center: [80, 22], scale: 1000 }}
-            width={900}
+            width={mapWidth}
             height={610}
             ref={mapRef}
           >
@@ -127,7 +132,10 @@ export default function IndiaMap() {
                       key={geo.rsmKey}
                       geography={geo}
                       onMouseDown={() => {
-                        if (locationStates.includes(stateName)) {
+                        if (
+                          locationStates.includes(stateName) &&
+                          stateName !== "Haryana"
+                        ) {
                           setSelectedState(stateName);
                         } else {
                           setSelectedState("National Capital Region (NCR)");
@@ -199,7 +207,7 @@ export default function IndiaMap() {
         {/*Right-side City List */}
         <div
           style={{
-            flexBasis: "35%",
+            flexBasis: "37%",
             borderRadius: "12px",
             padding: "16px",
           }}
@@ -331,6 +339,7 @@ export default function IndiaMap() {
                     fontWeight: 600,
                     color: "rgba(64, 82, 97, 1)",
                   }}
+                  className="city-name"
                 >
                   {city.hospitalAddress}
                 </span>

@@ -17058,8 +17058,11 @@
             ]
           ],
           "type": "Polygon",
-          "properties": { "st_nm": "National Capital Region", "st_code": "07" },
-          "id": "National Capital Region"
+          "properties": {
+            "st_nm": "National Capital Region (NCR)",
+            "st_code": "07"
+          },
+          "id": "National Capital Region (NCR)"
         },
         {
           "arcs": [
@@ -17073,8 +17076,12 @@
             ]
           ],
           "type": "Polygon",
-          "properties": { "st_nm": "Haryana", "st_code": "06" },
-          "id": "Haryana"
+          "properties": {
+            "st_nm": "National Capital Region (NCR)",
+            "st_code": "06"
+          },
+          "id": "National Capital Region (NCR)",
+          "note": "this state is haryana changing state name  to National Capital Region (NCR) so that it is highlighted"
         },
         {
           "arcs": [[1378, 1379, 1330, 1383, 1384, 1381, 1382]],
