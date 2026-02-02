@@ -1,8 +1,8 @@
 {
-  "name": "india-map",
+  "name": "Fortis Connect Dynamic Map",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://suyashsahu1.github.io/india-map/",
+  "homepage": "/FortisConnect_DynamicMap/",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",

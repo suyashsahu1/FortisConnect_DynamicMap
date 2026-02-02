@@ -5,7 +5,7 @@ This project displays an **interactive map of India** that highlights **Fortis h
 ---
 
 ## 🚀 Live Demo  
-🔗 **[View Deployed Site](https://suyashsahu1.github.io/india-map/)**
+🔗 **[View Deployed Site](https://suyashsahu1.github.io/FortisConnect_DynamicMap/)**
 
 ---
 
@@ -37,8 +37,8 @@ This project displays an **interactive map of India** that highlights **Fortis h
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/suyashsahu1/india-map.git
-cd india-map
+git clone https://github.com/suyashsahu1/FortisConnect_DynamicMap.git
+cd FortisConnect_DynamicMap
 ````
 
 ### 2️⃣ Install dependencies
@@ -74,7 +74,7 @@ npm run deploy
 ## 🗂️ Project Structure
 
 ```
-india-map/
+FortisConnect_DynamicMap/
 ├── public/
 │   ├── index.html
 │   └── ...
@@ -152,7 +152,7 @@ Custom scrollbar for city list:
 * Configured with:
 
   ```json
-  "homepage": "https://suyashsahu1.github.io/india-map/"
+  "homepage": "https://suyashsahu1.github.io/FortisConnect_DynamicMap/"
   ```
 * Deployed using `gh-pages` library.
 

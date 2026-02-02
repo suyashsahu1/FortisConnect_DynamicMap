@@ -382,7 +382,7 @@ export default function IndiaMap() {
             <img
               src={
                 hoveredCity.image ||
-                "/india-map/assets/fortisHospitalDefault.jpg"
+                "/FortisConnect_DynamicMap/assets/fortisHospitalDefault.jpg"
               }
               alt={hoveredCity.name}
               loading="lazy"
