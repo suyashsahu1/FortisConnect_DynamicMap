@@ -4,7 +4,7 @@ This project displays an **interactive map of India** that highlights **Fortis h
 
 ---
 
-## 🚀 Live Demo  
+## 🚀 Live Site
 🔗 **[View Deployed Site](https://suyashsahu1.github.io/FortisConnect_DynamicMap/)**
 
 ---
